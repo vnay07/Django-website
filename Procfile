@@ -1,1 +1,0 @@
-web: gunicorn GUITAR.wsgi

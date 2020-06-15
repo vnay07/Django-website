@@ -1,0 +1,94 @@
+{% extends 'basic.html' %}
+{% block css %}
+.contact_form{
+    width:40%;
+    
+}
+{% endblock %}
+
+{% block body %}
+<!--Section: Contact v.2-->
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions?
+         Please do not hesitate to contact us directly. Our team will come back to you within
+        a matter of hours to help you.</p>
+
+        <!--Grid column-->
+        <div class="container col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" action="{% url 'contact' %}" method="POST">{% csrf_token %}
+                
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <div class="md-form mb-0">
+                            
+                            <input type="text" id="name" placeholder="Enter your name"
+                             name="name" class="form-control mb-3" required>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="md-form mb-0">
+                            
+                            <input type="text" id="email" placeholder="Enter your email" 
+                            name="email" class="form-control mb-3" required>
+                            
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="md-form mb-0">
+                            
+                            <input type="text" id="subject"
+                             placeholder="Topic/Subject of message below..." 
+                             name="subject" class="form-control mb-3" required>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <!--Grid column-->
+                    <div class="col-md-8">
+                        <div class="md-form">
+                            <textarea type="text" id="message" 
+                            placeholder="Message here!!!" name="message" style="margin-top: 0px; margin-bottom: 0px; height: 247px;"
+                            rows="2" class="form-control md-textarea mb-3" required></textarea>  
+                        </div>
+                        <BUtton class="btn btn-primary" type="submit" >Send</BUtton>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>   
+        </div>
+        <!--Grid column-->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}>
+                 <h3 style="text-align: center;">{{ message }} </h3>
+                </li>
+        
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+</section>
+
+{% endblock body %}

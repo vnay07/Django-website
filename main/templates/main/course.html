@@ -1,0 +1,40 @@
+{% extends 'basic.html' %}
+{% block content %} 
+
+{% for product, range, nslides in allCourse %}
+    
+    <div class="container mt-5">
+    <h1 class="text-center text-capitalize" style="font-family: Garamond;padding-bottom: 15px;
+    border-bottom:1px solid #ddd ;">{{product.0.category}}</h1>
+    <div class=" row">
+    
+          {% for i in product %}
+
+          <div class="col-xs-3 col-sm-3 col-md-3 ml-5 mt-4">
+            <div class="card align-item-center" style="width: 18rem;">
+              <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+              <div class="card-body"  style="text-align: center;">
+                <h5 class="card-title" id="namepr{{i.id}}"style="text-align: left;">{{i.title}}</h5>
+                <p class="card-text" style="text-align: left;">{{i.desc|slice:'0:60'}}...</p>  
+                <a href="/main/material/{{i.subCategory}}"> <button id="qv{{i.subCategory}}" 
+                    class="btn btn-primary cart">Watch Now</button></a>              
+              </div>
+            </div>
+          </div>
+
+          {% if forloop.counter|divisibleby:100 and forloop.counter > 0 and not forloop.last %}
+        </div>
+        <div class=""> 
+
+          {% endif %}
+
+          {% endfor %}
+        </div>
+      </div>
+        
+        
+
+    
+     
+      {% endfor %}
+{% endblock %}

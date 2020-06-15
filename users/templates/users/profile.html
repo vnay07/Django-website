@@ -1,0 +1,47 @@
+{% extends 'basic.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container content-section">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{user.profile.image.url}}">
+      <div class="media-body">
+        <h2 class="account-heading">{{user.username}}</h2>
+        <p class="text-secondary">{{user.email}}</p>
+      </div>
+    </div>
+    <!-- FORM HERE -->
+    <form method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <fieldset class="form-group mt-5">
+            <legend class="border-bottom mb-4">Profile Info 
+              <a href="#" style="margin-left: 40%;" id="hide_pro">
+                <i class="fas fa-user-cog " style="color: grey;">Edit profile</i>
+              </a>
+            </legend>
+            <div id="hidden_profile" style="visibility:visible">
+            {{u_form|crispy}}
+            {{p_form|crispy}}
+        
+        
+          <div class="form-group">
+              <button class="btm btn-outline-info" type="submit">Update</button>
+          </div>
+          <div class='mt-5 border-top '><button class="btm btn-danger mt-1" type="submit" >
+            <a href="{% url 'logout' %}" style="color: white; font-size: large;padding: 5px;" > Log Out</a></button>
+          </div>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+{% endblock content %}
+{% block js %}
+<script>
+  $(document).ready(function(){
+    $("#hide_pro").click(function(){
+      $.ajax({success: function(result){
+         document.getElementById("hidden_profile").style.visibility = "hidden";
+      }});
+    });
+  });
+</script>
+{% endblock %}

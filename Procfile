@@ -1,1 +1,1 @@
-web: gunicorn guitar.wsgi
+web: gunicorn GUITAR.wsgi
